@@ -14,17 +14,17 @@ class BookSeeder extends Seeder
     public function run(): void
     {  
         Book::create([
-            'title' => 'A Study in Scarlet',
+            'title' => 'Grimm Fairy Tales',
             'cover_url' => 'cover_img/book1.webp',
-            'author_id' => 1, // Arthur Conan Doyle
+            'author_id' => 2, // Jacob - Wilhelm Grimm
             'category_id' => 1, // Fiction
             'published_year' => 1934,
         ]);
 
         Book::create([
-            'title' => 'Murder on the Orient Express',
+            'title' => 'Don Quixote',
             'cover_url' => 'cover_img/book2.webp',
-            'author_id' => 2, // Agatha Christie
+            'author_id' => 1, // Miguel De Cervantes
             'category_id' => 1, // Fiction
             'published_year' => 1934,
         ]);

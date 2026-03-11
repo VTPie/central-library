@@ -12,7 +12,7 @@ class AuthorSeeder extends Seeder
      */
     public function run(): void
     {
-        Author::create(['name' => 'Athur Conan Doyle', 'birth_date' => '1859-05-22']);
-        Author::create(['name' => 'Agatha Christie', 'birth_date' => '1890-09-15']);
+        Author::create(['name' => 'Miguel De Cervantes', 'birth_date' => '1859-05-22']);
+        Author::create(['name' => 'Jacob - Wilhelm Grimm', 'birth_date' => '1890-09-15']);
     }
 }
