@@ -1,0 +1,37 @@
+name: Run unit tests
+
+on:
+  pull_request:
+
+jobs:
+    unittest:
+        runs-on: ubuntu-latest
+        services:
+            mysql:
+                image: mysql:8.0
+                env:
+                    MYSQL_ROOT_PASSWORD: password
+                    MYSQL_DATABASE: test_db
+                ports:
+                    - 3306:3306
+                options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+        steps:
+            - name: Set up PHP environment
+              uses: ./.github/actions/setup
+            - name: Install dependencies
+              run: composer install
+            - name: Copy .env.example to .env
+              run: cp .env.example .env
+            - name: Generate application key
+              run: php artisan key:generate
+            - name: Run migrations
+              run: php artisan migrate
+            - name: Run unit tests
+              run: php artisan test
+              env:
+                DB_CONNECTION: mysql
+                DB_HOST: 127.0.0.1
+                DB_PORT: 3306
+                DB_DATABASE: test_db
+                DB_USERNAME: root
+                DB_PASSWORD: password
