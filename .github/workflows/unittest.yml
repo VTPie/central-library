@@ -16,10 +16,10 @@ jobs:
                     - 3306:3306
                 options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
         steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
             - name: Set up PHP environment
               uses: ./.github/actions/setup
-            - name: Install dependencies
-              run: composer install
             - name: Copy .env.example to .env
               run: cp .env.example .env
             - name: Generate application key
