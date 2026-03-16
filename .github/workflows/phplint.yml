@@ -1,0 +1,19 @@
+name: Check PHP syntax
+
+on:
+  pull_request:
+
+jobs:
+    phplint:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Set up PHP environment
+              uses: ./.github/actions/setup
+            - name: Install dependencies
+              run: composer install
+            - name: Check PHPStan
+              run: vendor/bin/phpstan	analyse --memory-limit=-1
+            - name: Check Pint
+              run: vendor/bin/pint --test -v
