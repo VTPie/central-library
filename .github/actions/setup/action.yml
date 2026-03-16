@@ -10,5 +10,3 @@ runs:
         php-version: "8.2"
         extensions: mbstring, xml, curl, zip
         coverage: none
-    - name: Install dependencies
-      run: composer install
