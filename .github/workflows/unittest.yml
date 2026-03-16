@@ -6,6 +6,13 @@ on:
 jobs:
     unittest:
         runs-on: ubuntu-latest
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: test_db
+          DB_USERNAME: root
+          DB_PASSWORD: password
         services:
             mysql:
                 image: mysql:8.0
@@ -20,6 +27,8 @@ jobs:
               uses: actions/checkout@v4
             - name: Set up PHP environment
               uses: ./.github/actions/setup
+            - name: Install dependencies
+              run: composer install
             - name: Copy .env.example to .env
               run: cp .env.example .env
             - name: Generate application key
@@ -28,10 +37,3 @@ jobs:
               run: php artisan migrate
             - name: Run unit tests
               run: php artisan test
-              env:
-                DB_CONNECTION: mysql
-                DB_HOST: 127.0.0.1
-                DB_PORT: 3306
-                DB_DATABASE: test_db
-                DB_USERNAME: root
-                DB_PASSWORD: password
