@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
@@ -37,4 +38,9 @@ Route::middleware('auth')->prefix('books')->group(function () {
 
     // DELETE
     Route::delete('/{id}', [BookController::class, 'destroy'])->name('books.destroy'); 
+});
+
+Route::middleware('auth')->prefix('authors')->group(function () {
+    // VIEW
+    Route::get('/', [AuthorController::class, 'index'])->name('authors.index');
 });

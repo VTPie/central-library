@@ -13,7 +13,7 @@
           <a class="nav-link active" aria-current="page" href="/books">Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="">Authors</a>
+          <a class="nav-link" href={{ route('authors.index') }}>Authors</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Blogs</a>
