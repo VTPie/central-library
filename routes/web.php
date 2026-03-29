@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
@@ -15,7 +15,7 @@ Route::get('/login', function () {
 });
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-//Sign out
+// Sign out
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Register
@@ -37,7 +37,7 @@ Route::middleware('auth')->prefix('books')->group(function () {
     Route::put('/{id}', [BookController::class, 'update'])->name('books.update');
 
     // DELETE
-    Route::delete('/{id}', [BookController::class, 'destroy'])->name('books.destroy'); 
+    Route::delete('/{id}', [BookController::class, 'destroy'])->name('books.destroy');
 });
 
 Route::middleware('auth')->prefix('authors')->group(function () {

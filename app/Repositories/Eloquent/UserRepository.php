@@ -1,6 +1,6 @@
 <?php
 
-namespace  App\Repositories\Eloquent;
+namespace App\Repositories\Eloquent;
 
 use App\Models\User;
 use App\Repositories\Interface\UserRepositoryInterface;
@@ -28,6 +28,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $model = $this->find($id);
         $model->update($data);
+
         return $model;
     }
 }

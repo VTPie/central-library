@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Services\AuthorService;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class AuthorController extends Controller
 {
     protected AuthorService $authorService;
 
-    public function __construct(AuthorService $authorService) {
+    public function __construct(AuthorService $authorService)
+    {
         $this->authorService = $authorService;
     }
 

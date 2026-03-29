@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\BookService;
-use App\Services\AuthorService;
-use App\Services\CategoryService;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
-use Illuminate\Support\Facades\Log;
+use App\Services\AuthorService;
+use App\Services\BookService;
+use App\Services\CategoryService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
     protected BookService $bookService;
+
     protected AuthorService $authorService;
+
     protected CategoryService $categoryService;
 
     public function __construct(
@@ -30,7 +32,7 @@ class BookController extends Controller
     {
         try {
             $books = $this->bookService->getAllBooks($request);
-    
+
             return view('books.index', [
                 'books' => $books,
                 'author_list' => $this->authorService->getAllAuthors(),
@@ -65,7 +67,7 @@ class BookController extends Controller
         try {
             $data = $request->validated();
             $this->bookService->storeBook($data);
-    
+
             return redirect()->route('books.index')->with('success', 'Book created successfully!');
         } catch (\Exception $e) {
             Log::error($e->getMessage());
@@ -96,12 +98,12 @@ class BookController extends Controller
     {
         try {
             $data = $request->validated();
-            if(isset($data['cover_url'])){
+            if (isset($data['cover_url'])) {
                 $this->bookService->updateBook($id, $data);
             } else {
                 $this->bookService->updateBookWithoutCoverImg($id, $data);
             }
-    
+
             return redirect()->route('books.index')->with('success', 'Book edited successfully!');
         } catch (\Exception $e) {
             Log::error($e->getMessage());

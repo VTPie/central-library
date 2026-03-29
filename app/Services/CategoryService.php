@@ -16,7 +16,7 @@ class CategoryService
 
     public function getAllCategories()
     {
-        try {  
+        try {
             return $this->categoryRepo->all();
         } catch (\Exception $e) {
             Log::error('ERROR: ', [

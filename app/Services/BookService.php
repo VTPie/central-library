@@ -3,8 +3,8 @@
 namespace App\Services;
 
 use App\Repositories\Interface\BookRepositoryInterface;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class BookService
 {
@@ -34,7 +34,7 @@ class BookService
         try {
             $target_book = $this->bookRepo->find($id);
             Storage::disk('public')->delete($target_book->cover_url);
-    
+
             return $this->bookRepo->delete($id);
         } catch (\Exception $e) {
             Log::error('ERROR: ', [
@@ -50,10 +50,10 @@ class BookService
     {
         try {
             $file = $data['cover_url'];
-            $fileName = 'book' . now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
+            $fileName = 'book'.now()->format('YmdHis').'.'.$file->getClientOriginalExtension();
             $path = $file->storeAs('cover_img', $fileName, 'public');
             $data['cover_url'] = $path;
-    
+
             return $this->bookRepo->create($data);
         } catch (\Exception $e) {
             Log::error('ERROR: ', [
@@ -84,12 +84,12 @@ class BookService
         try {
             $target_book = $this->bookRepo->find($id);
             Storage::disk('public')->delete($target_book->cover_url);
-    
+
             $file = $data['cover_url'];
-            $fileName = 'book' . now()->format('YmdHis') . '.' . $file->getClientOriginalExtension();
+            $fileName = 'book'.now()->format('YmdHis').'.'.$file->getClientOriginalExtension();
             $path = $file->storeAs('cover_img', $fileName, 'public');
             $data['cover_url'] = $path;
-    
+
             return $this->bookRepo->update($id, $data);
         } catch (\Exception $e) {
             Log::error('ERROR: ', [

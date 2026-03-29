@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
 use App\Services\UserService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
@@ -23,6 +23,7 @@ class AuthController extends Controller
         $credentials = $request->validated();
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
             return redirect()->intended('/books');
         }
 
@@ -47,7 +48,7 @@ class AuthController extends Controller
             $this->userService->createUser($userInfo);
 
             return redirect('/login')->with('success', 'User registered successfully. Please log in again!');
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             Log::error($e->getMessage());
 
             return redirect('/login')->with('error', 'Failed to register new user. Please try again.');
