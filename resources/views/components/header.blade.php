@@ -7,16 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link {{ request()->is('/') ? 'active fw-bold' : '' }}" href="/" @if(request()->is('/')) aria-current="page" @endif>Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/books">Books</a>
+          <a class="nav-link {{ request()->is('books*') ? 'active fw-bold' : '' }}" href="/books" @if(request()->is('books*')) aria-current="page" @endif>Books</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href={{ route('authors.index') }}>Authors</a>
+          <a class="nav-link {{ request()->is('authors*') ? 'active fw-bold' : '' }}" href="{{ route('authors.index') }}" @if(request()->is('authors*')) aria-current="page" @endif>Authors</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Blogs</a>
+          <a class="nav-link {{ request()->is('orders*') ? 'active fw-bold' : '' }}" href="{{ route('orders.index') }}" @if(request()->is('orders*')) aria-current="page" @endif>Orders</a>
         </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">About us</a>

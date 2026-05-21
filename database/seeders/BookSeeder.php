@@ -18,6 +18,7 @@ class BookSeeder extends Seeder
             'author_id' => 2, // Jacob - Wilhelm Grimm
             'category_id' => 1, // Fiction
             'published_year' => 1934,
+            'price' => 20,
         ]);
 
         Book::create([
@@ -26,6 +27,7 @@ class BookSeeder extends Seeder
             'author_id' => 1, // Miguel De Cervantes
             'category_id' => 1, // Fiction
             'published_year' => 1934,
+            'price' => 15,
         ]);
     }
 }

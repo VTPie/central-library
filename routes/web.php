@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -38,6 +39,22 @@ Route::middleware('auth')->prefix('books')->group(function () {
 
     // DELETE
     Route::delete('/{id}', [BookController::class, 'destroy'])->name('books.destroy');
+});
+
+Route::middleware('auth')->prefix('orders')->group(function () {
+    // LIST
+    Route::get('/', [OrderController::class, 'index'])->name('orders.index');
+
+    // ADD
+    Route::get('/add', [OrderController::class, 'add'])->name('orders.add');
+    Route::post('/store', [OrderController::class, 'store'])->name('orders.store');
+
+    // UPDATE
+    Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::put('/{id}', [OrderController::class, 'update'])->name('orders.update');
+
+    // DELETE
+    Route::delete('/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
 Route::middleware('auth')->prefix('authors')->group(function () {
