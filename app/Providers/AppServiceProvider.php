@@ -5,10 +5,12 @@ namespace App\Providers;
 use App\Repositories\Eloquent\AuthorRepository;
 use App\Repositories\Eloquent\BookRepository;
 use App\Repositories\Eloquent\CategoryRepository;
+use App\Repositories\Eloquent\OrderImportRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Interface\AuthorRepositoryInterface;
 use App\Repositories\Interface\BookRepositoryInterface;
 use App\Repositories\Interface\CategoryRepositoryInterface;
+use App\Repositories\Interface\OrderImportRepositoryInterface;
 use App\Repositories\Interface\UserRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,6 +25,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AuthorRepositoryInterface::class, AuthorRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(OrderImportRepositoryInterface::class, OrderImportRepository::class);
     }
 
     /**

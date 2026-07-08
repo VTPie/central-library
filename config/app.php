@@ -123,4 +123,18 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'import_statuses' => [
+        'pending' => 'pending',
+        'processing' => 'processing',
+        'completed' => 'completed',
+        'failed' => 'failed',
+    ],
+
+    'order_import_columns' => [
+        'id',
+        'book_id',
+        'quantity',
+        'created_at',
+        'updated_at',
+    ],
 ];

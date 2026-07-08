@@ -55,6 +55,11 @@ Route::middleware('auth')->prefix('orders')->group(function () {
 
     // DELETE
     Route::delete('/{id}', [OrderController::class, 'destroy'])->name('orders.destroy');
+
+    // IMPORT
+    Route::get('/import', [OrderController::class, 'importForm'])->name('orders.importForm');
+    Route::post('/import', [OrderController::class, 'import'])->name('orders.import');
+    Route::get('/import/progress', [OrderController::class, 'importProgress'])->name('orders.importProgress');
 });
 
 Route::middleware('auth')->prefix('authors')->group(function () {

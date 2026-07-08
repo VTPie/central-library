@@ -16,6 +16,7 @@
     @endforeach
 
     <a href="{{ route('orders.add') }}" class="btn btn-primary mb-3">Add new order</a>
+    <a href="{{ route('orders.importForm') }}" class="btn btn-primary mb-3">Import Orders</a>
 
     @if ($orders->count() > 0)
         <table class="table table-bordered table-hover align-middle">
@@ -58,10 +59,20 @@
                 <li class="page-item {{ $orders->onFirstPage() ? 'disabled' : '' }}">
                     <a class="page-link" href="{{ $orders->previousPageUrl() }}">Previous</a>
                 </li>
-                @for ($i = 1; $i <= $orders->lastPage(); $i++)
-                    <li class="page-item {{ $orders->currentPage() == $i ? 'active' : '' }}">
-                        <a class="page-link" href="{{ $orders->url($i) }}">{{ $i }}</a>
-                    </li>
+                @php
+                    $lastPage = $orders->lastPage();
+                    $edgeCount = 3;
+                @endphp
+                @for ($i = 1; $i <= $lastPage; $i++)
+                    @if ($i <= $edgeCount || $i > $lastPage - $edgeCount)
+                        <li class="page-item {{ $orders->currentPage() == $i ? 'active' : '' }}">
+                            <a class="page-link" href="{{ $orders->url($i) }}">{{ $i }}</a>
+                        </li>
+                    @elseif ($i == $edgeCount + 1)
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    @endif
                 @endfor
                 <li class="page-item {{ $orders->hasMorePages() ? '' : 'disabled' }}">
                     <a class="page-link" href="{{ $orders->nextPageUrl() }}">Next</a>
