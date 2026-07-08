@@ -91,6 +91,18 @@ class OrderController extends Controller
         }
     }
 
+    public function importTemplate()
+    {
+        $columns = config('app.order_import_columns');
+
+        $csv = implode(',', $columns) . "\n";
+
+        return response($csv, 200, [
+            'Content-Type' => 'text/csv',
+            'Content-Disposition' => 'attachment; filename="order-import-template.csv"',
+        ]);
+    }
+
     public function import(OrderImportRequest $request)
     {
         try {

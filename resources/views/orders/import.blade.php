@@ -24,6 +24,7 @@
 
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-primary">Import</button>
+                    <a href="{{ route('orders.importTemplate') }}" class="btn btn-outline-secondary">Download Template</a>
                     <a href="{{ route('orders.index') }}" class="btn btn-secondary">Cancel</a>
                 </div>
             </form>

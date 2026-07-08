@@ -60,6 +60,7 @@ Route::middleware('auth')->prefix('orders')->group(function () {
     Route::get('/import', [OrderController::class, 'importForm'])->name('orders.importForm');
     Route::post('/import', [OrderController::class, 'import'])->name('orders.import');
     Route::get('/import/progress', [OrderController::class, 'importProgress'])->name('orders.importProgress');
+    Route::get('/import/template', [OrderController::class, 'importTemplate'])->name('orders.importTemplate');
 });
 
 Route::middleware('auth')->prefix('authors')->group(function () {
